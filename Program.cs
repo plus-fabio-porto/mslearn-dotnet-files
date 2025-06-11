@@ -1,18 +1,28 @@
-﻿using System.IO;
+﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
-var salesFiles = FindFiles("stores");
+// Puxa lista de arquivos 
 
+string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+Directory.SetCurrentDirectory(docPath);
+var salesFiles = FindFiles("TECSAT");
+
+
+foreach (var file in salesFiles)
+{
+    Console.WriteLine(file);
+}
+
+/*
 string fileName = $"stores{Path.DirectorySeparatorChar}201{Path.DirectorySeparatorChar}sales{Path.DirectorySeparatorChar}sales.json";
 
 FileInfo info = new FileInfo(fileName);
 
 Console.WriteLine($"Full Name: {info.FullName}{Environment.NewLine}Directory: {info.Directory}{Environment.NewLine}Extension: {info.Extension}{Environment.NewLine}Create Date: {info.CreationTime}"); // And many more
-/*foreach (var file in salesFiles)
-{
-    Console.WriteLine(file);
-}
+
 */
+
 IEnumerable<string> FindFiles(string foldername)
 {
     List<string> salesFiles = new List<string>();
@@ -22,10 +32,7 @@ IEnumerable<string> FindFiles(string foldername)
     foreach (var file in foundFiles)
     {
 
-        if (file.EndsWith("sales.json"))
-        {
             salesFiles.Add(file);
-        }
 
     }
     
